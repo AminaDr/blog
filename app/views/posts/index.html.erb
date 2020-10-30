@@ -1,0 +1,41 @@
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('../assets/home-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Clean Blog</h1>
+          <span class="subheading">A Blog Theme by Start Bootstrap</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <% @posts.each do |post| %>                                                <!-- Start der Schleife -->
+        <div class="post-preview">
+          <h2 class="post-title"><%= link_to post.titel, post %></h2>            <!-- Ausgabe (=) Titel + Verlinkung -->
+          <h3 class="post-subtitle"><%= post.content %></h3>                     <!-- Ausgabe Inhalt -->
+          <p><%= link_to "Editieren", edit_post_path(post)%> |
+          <%= link_to "Löschen" ,post, :data => {:confirm => "Bist du sicher?"}, :method => :delete %></p>
+        </div>
+        <hr>
+      <% end %>                                                                 <!-- Ende der Schleife-->
+      <!-- Pager -->
+      <div class="clearfix">
+        <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+      </div>
+      <%= will_paginate @posts %>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+
+<p><%= link_to "Neuer Eintrag", new_post_path%></p>   <!--Verlinkung zum neuen Eintrag-->
